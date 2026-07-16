@@ -127,7 +127,7 @@ const DATA={
   emoji:'🎯',title:'ENTP',subtitle:'思维跳跃的挑战者',
   desc:'ENTP 爱的是跟你有来有回的刺激。当你附和TA的一切、不再反驳TA的时候，TA的无聊不是对别人——是对你。',
   color:'#a78bfa',qrSrc:'qrcode.jpg',
-  winDesc:'你跟上了ENTP的思维节奏。你反驳得有水平、有角度、有火花。TA觉得你又变得有趣了，于是TA又对你产生了兴趣——至少在腻之前是这样。',difficulty:'★★★★☆',diffLabel:'挑战型 · 需要智力碰撞',dist:[100,76,58,42,30,20,12,7,4,2,1,0.4,0.1]};
+  winDesc:'你跟上了ENTP的思维节奏。你反驳得有水平、有角度、有火花。TA觉得你又变得有趣了，于是TA又对你产生了兴趣——至少在腻之前是这样。',difficulty:'★★★★☆',diffLabel:'挑战型 · 需要智力碰撞',dist:[100,95,89,81,71,60,48,37,26,17,10,5,1.5]};
 
 const STAGES=[{scene:"TA抛出一个话题你只会嗯嗯对",line:"你觉得呢？",options:["你这个角度挺新的但我看法不太一样","嗯嗯你说得都对","我说了你别嫌我杠啊","我觉得你这个逻辑有个地方可以再想想"],safe:4,death:"嗯嗯对 TA觉得你无聊到窒息"},{scene:"TA故意挑刺等你来杠",line:"你错了。",options:["那你倒是说说我错哪了我来跟你辩","你说错了就错了吧我不想争","我又错了那你帮我看看哪里不对","你每次都说我错那你来说说正确的"],safe:1,death:"你说对对对 TA没劲透了"},{scene:"TA玩消失因为跟你聊天没意思",line:"没看到消息。",options:["你是觉得跟我聊天没意思了吗","你不想聊了直说不用玩消失","我刚刚发现了一个超有意思的东西给你看","那你消失我也消失谁怕谁"],safe:3,death:"你问为什么不回 TA说忘了 你没意思到被忘"},{scene:"TA开始跟自己辩论也不跟你聊",line:"我想想。",options:["你在想什么我也想听听你的观点","说出来呗我也想听听你在想什么","你又来了每次都自己在那想不理人","你跟自己能辩论出什么结果来"],safe:2,death:"你加入不进去 你的思维等级不够"},{scene:"TA说你变得无聊了",line:"你这人好没意思。",options:["你才没意思呢你说话真的很伤人","那你觉得什么有意思我奉陪到底","来做点有意思的事你敢不敢","那你说什么有意思我陪你玩到底"],safe:4,death:"你说那我改 TA说改就是最无聊的"},{scene:"TA在网上跟人吵一天不跟你说话",line:"TA们至少有意思。",options:["你跟TA们过去吧别回来了","那你来跟我聊我保证比他们有料","你跟TA们吵什么了我也想听听","你就是在逃避跟我交流"],safe:2,death:"你吃醋 TA说TA们比你会聊"},{scene:"TA用反常识问题测试你",line:"你是不是也这么想？",options:["我没想过这个问题你展开说说","这个问题好有意思但我不太同意","我当然不这么想你这问题有毛病","这么想的人只有你一个吧"],safe:1,death:"你装同意 TA一眼看穿 标签为无趣"},{scene:"TA找新话题但你接不住",line:"算了。",options:["别算了我有兴趣你再讲讲","你讲那么深谁听得懂啊","你能不能换个说法我可能就懂了","算了是什么意思继续聊聊呗我接招"],safe:4,death:"算了不是TA算了 是你算了TA了"},{scene:"TA说跟你在一起没成长",line:"你没有新东西了。",options:["没成长就没成长吧舒服最重要","那我们一起学点新东西不就行了","你说我没新东西你也没教我什么","那你教我啊我学得快"],safe:2,death:"你说有你就够了 TA嫌你停滞"},{scene:"TA质疑你们的关系基础",line:"我们为什么在一起？",options:["因为你每天都给我新的刺激和挑战","因为爱哪有那么多为什么","这个问题的答案让我想想可能是你让我一直有新鲜感","因为跟你在一起不无聊"],safe:3,death:"你说因为爱 TA说这个理由不充分"},{scene:"TA说想试试开放式关系",line:"你怎么看？",options:["这个话题挺有意思的你为什么会这么想","你在测试我对吧你就是这种人","我不同意你想都别想","我不接受你要是敢试我们就结束"],safe:1,death:"你同意 TA觉得你更无聊了"},{scene:"TA说你已经没什么好辩论的了",line:"没意思。",options:["那我再跟你打个赌最后来一局","没意思就没意思吧那就不聊了","你从来没觉得我有意思过对吧","既然你觉得没意思那我换个方向跟你聊"],safe:4,death:"你认输 你被TA彻底归档为过时版本"}];
 
@@ -137,7 +137,7 @@ const LABELS=['A','B','C','D'];
 const SK='mbti_wb';
 function ls(){try{return JSON.parse(localStorage.getItem(SK))||{}}catch(e){return{}}}
 function sv(t,l,w){const a=ls();if(!a[t]||a[t].best<l){a[t]={best:l,won:w,date:Date.now()}}a[t].plays=(a[t].plays||0)+1;localStorage.setItem(SK,JSON.stringify(a))}
-function pct(l){const d=DATA.dist;return Math.round((d[Math.min(l,d.length-1)]||0)*10)/10}
+function pct(l){return Math.round((100-(d[Math.min(Math.max(l-1,0),d.length-1)]||0))*10)/10}
 function statsHTML(level){
   const p=pct(level);
   return '<div class="stats-box">'
